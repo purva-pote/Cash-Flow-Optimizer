@@ -97,9 +97,9 @@ cashflow-optimizer/
 4. Click **"Add Transaction"**
 
 **Example:**
-- Alice owes Bob $50  
-- Bob owes Charlie $30  
-- Charlie owes Alice $20  
+- Alice owes Bob ₹50  
+- Bob owes Charlie ₹30  
+- Charlie owes Alice ₹20  
 
 ### Viewing Balances
 
@@ -212,18 +212,18 @@ app.run(debug=False)  # Set to False for production
 
 ### Scenario 1: Trip Expenses
 ```
-Alice paid $100 for hotel (Bob and Charlie split)
-Bob paid $60 for food (Alice and Charlie split)
-Charlie paid $30 for gas (Alice and Bob split)
+Alice paid ₹100 for hotel (Bob and Charlie split)
+Bob paid ₹60 for food (Alice and Charlie split)
+Charlie paid ₹30 for gas (Alice and Bob split)
 
 Result: 2-3 optimized payments instead of 6 transactions
 ```
 
 ### Scenario 2: Roommate Bills
 ```
-John owes Sarah $200 (rent)
-Sarah owes Mike $150 (utilities)
-Mike owes John $100 (groceries)
+John owes Sarah ₹200 (rent)
+Sarah owes Mike ₹150 (utilities)
+Mike owes John ₹100 (groceries)
 
 Result: 1-2 optimized payments instead of 3 transactions
 ```
