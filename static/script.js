@@ -1,5 +1,3 @@
-// Cash Flow Optimizer - script.js
-
 class CashFlowUI {
     constructor() {
         this.form = document.getElementById('transactionForm');

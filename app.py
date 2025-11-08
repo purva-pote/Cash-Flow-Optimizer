@@ -1,7 +1,3 @@
-"""
-Cashflow Optimizer - app.py
-A web application to minimize debt settlements between multiple parties
-"""
 
 from flask import Flask, render_template, request, jsonify
 from collections import defaultdict
@@ -10,14 +6,10 @@ import heapq
 app = Flask(__name__)
 
 class CashFlowOptimizer:
-    """
-    Data structure to manage and optimize cash flows between people.
-    Uses graph-based approach with min-heap for efficient debt settlement.
-    """
     
     def __init__(self):
-        self.transactions = []  # List of all transactions
-        self.balances = defaultdict(float)  # Net balance for each person
+        self.transactions = [] 
+        self.balances = defaultdict(float)  
     
     def add_transaction(self, debtor, creditor, amount):
         """Add a new transaction: debtor owes creditor the specified amount"""
@@ -49,9 +41,9 @@ class CashFlowOptimizer:
         Calculate minimum number of transactions to settle all debts.
         Uses greedy algorithm with heaps for O(n log n) complexity.
         """
-        # Create lists of debtors and creditors
-        debtors = []  # Min heap (negative values for max heap behavior)
-        creditors = []  # Max heap (negative values)
+       
+        debtors = []  
+        creditors = []  
         
         for person, balance in self.balances.items():
             if balance < -0.01:  # Owes money (small epsilon for float comparison)
@@ -69,7 +61,6 @@ class CashFlowOptimizer:
             debt_amount = abs(debt_amount)
             credit_amount = abs(credit_amount)
             
-            # Settle as much as possible
             settlement = min(debt_amount, credit_amount)
             
             minimized.append({
@@ -78,12 +69,10 @@ class CashFlowOptimizer:
                 'amount': round(settlement, 2)
             })
             
-            # If debtor still owes money, add back to heap
             remaining_debt = debt_amount - settlement
             if remaining_debt > 0.01:
                 heapq.heappush(debtors, (-remaining_debt, debtor))
             
-            # If creditor is still owed money, add back to heap
             remaining_credit = credit_amount - settlement
             if remaining_credit > 0.01:
                 heapq.heappush(creditors, (-remaining_credit, creditor))
@@ -95,7 +84,6 @@ class CashFlowOptimizer:
         self.transactions.clear()
         self.balances.clear()
 
-# Global optimizer instance
 optimizer = CashFlowOptimizer()
 
 @app.route('/')
