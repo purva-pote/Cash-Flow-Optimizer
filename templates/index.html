@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Flow Optimizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Cash Flow Optimizer</h1>
+            <p class="subtitle">Minimize debt settlements with smart algorithms</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Add Transaction Section -->
+            <section class="card">
+                <h2>📝 Add Transaction</h2>
+                <form id="transactionForm">
+                    <div class="form-group">
+                        <label for="debtor">Who owes money?</label>
+                        <input type="text" id="debtor" placeholder="e.g., Alice" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="creditor">Who should receive money?</label>
+                        <input type="text" id="creditor" placeholder="e.g., Bob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount ($)</label>
+                        <input type="number" id="amount" step="0.01" min="0.01" placeholder="0.00" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Transaction</button>
+                </form>
+                <div id="message" class="message"></div>
+            </section>
+
+            <!-- Current Transactions -->
+            <section class="card">
+                <div class="section-header">
+                    <h2>📊 All Transactions</h2>
+                    <button id="clearBtn" class="btn btn-danger btn-sm">Clear All</button>
+                </div>
+                <div id="transactionsList" class="transactions-list">
+                    <p class="empty-state">No transactions yet. Add one above!</p>
+                </div>
+            </section>
+
+            <!-- Current Balances -->
+            <section class="card">
+                <h2>💳 Current Balances</h2>
+                <div id="balancesList" class="balances-list">
+                    <p class="empty-state">No balances to show</p>
+                </div>
+            </section>
+
+            <!-- Minimized Settlements -->
+            <section class="card highlight">
+                <h2>✨ Optimized Settlements</h2>
+                <p class="help-text">Click the button below to calculate the minimum number of payments needed</p>
+                <button id="minimizeBtn" class="btn btn-success">Calculate Optimal Settlements</button>
+                <div id="minimizedList" class="minimized-list"></div>
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
