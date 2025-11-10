@@ -1,3 +1,4 @@
+/* Cash Flow Optimizer - style.css with Visualization */
 
 * {
     margin: 0;
@@ -11,6 +12,7 @@
     --success-color: #48bb78;
     --danger-color: #f56565;
     --warning-color: #ed8936;
+    --info-color: #4299e1;
     --bg-color: #f7fafc;
     --card-bg: #ffffff;
     --text-primary: #2d3748;
@@ -29,7 +31,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -76,6 +78,27 @@ header h1 {
     border: 2px solid var(--primary-color);
 }
 
+.card.math-card {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+    border: 2px solid var(--danger-color);
+    grid-column: 1 / -1;
+}
+
+.card.set-theory-card {
+    background: linear-gradient(135deg, #f0fff4 0%, #e0f7e9 100%);
+    border: 2px solid var(--success-color);
+    grid-column: 1 / -1;
+}
+
+.card.graph-card {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border: 2px solid var(--primary-color);
+}
+
+.card.visualization-card {
+    grid-column: 1 / -1;
+}
+
 .card h2 {
     font-size: 1.5rem;
     margin-bottom: 16px;
@@ -93,6 +116,228 @@ header h1 {
     margin-bottom: 0;
 }
 
+/* Graph Canvas */
+#graphCanvas {
+    width: 100%;
+    height: 400px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: white;
+    display: block;
+}
+
+.graph-legend {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--text-primary);
+}
+
+.legend-arrow {
+    font-size: 1.5rem;
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+/* Math Process */
+.math-process {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.math-step {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--danger-color);
+}
+
+.math-step h3 {
+    color: var(--danger-color);
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+}
+
+.math-step p {
+    margin: 8px 0;
+    color: var(--text-secondary);
+    font-family: 'Courier New', monospace;
+}
+
+/* Algorithm Steps */
+.algorithm-steps {
+    margin-top: 24px;
+}
+
+.step-item {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--info-color);
+    animation: slideIn 0.5s ease-out;
+}
+
+.step-item.completed {
+    border-left-color: var(--success-color);
+    background: #f0fff4;
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.step-number {
+    background: var(--info-color);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.step-item.completed .step-number {
+    background: var(--success-color);
+}
+
+.step-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.step-content {
+    color: var(--text-secondary);
+    margin-left: 44px;
+}
+
+.step-formula {
+    background: #f7fafc;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+    font-family: 'Courier New', monospace;
+    border: 1px solid var(--border-color);
+}
+
+/* Set Visualization */
+.set-visualization {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.set-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.set {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 3px solid;
+    min-height: 200px;
+}
+
+.set h3 {
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.set-definition {
+    font-family: 'Courier New', monospace;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    padding: 8px;
+    background: #f7fafc;
+    border-radius: 4px;
+}
+
+.creditors-set {
+    border-color: var(--success-color);
+}
+
+.creditors-set h3 {
+    color: var(--success-color);
+}
+
+.debtors-set {
+    border-color: var(--danger-color);
+}
+
+.debtors-set h3 {
+    color: var(--danger-color);
+}
+
+.set-divider {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+}
+
+.set-members {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.set-member {
+    background: #f7fafc;
+    padding: 12px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+}
+
+.member-name {
+    font-weight: 600;
+}
+
+.member-value {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+}
+
+.set-properties {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid var(--info-color);
+}
+
+.set-properties p {
+    margin: 8px 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* Form Styles */
 .form-group {
     margin-bottom: 20px;
 }
@@ -120,6 +365,7 @@ header h1 {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* Buttons */
 .btn {
     padding: 12px 24px;
     border: none;
@@ -174,6 +420,7 @@ header h1 {
     font-size: 0.875rem;
 }
 
+/* Messages */
 .message {
     margin-top: 16px;
     padding: 12px 16px;
@@ -205,6 +452,7 @@ header h1 {
     border: 1px solid #fc8181;
 }
 
+/* Transaction Items */
 .transaction-item, .balance-item, .settlement-item {
     padding: 16px;
     border-radius: 8px;
@@ -334,6 +582,17 @@ header h1 {
 }
 
 /* Responsive Design */
+@media (max-width: 968px) {
+    .set-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .set-divider {
+        justify-content: center;
+        padding: 12px 0;
+    }
+}
+
 @media (max-width: 768px) {
     header h1 {
         font-size: 2rem;
@@ -355,6 +614,10 @@ header h1 {
     
     body {
         padding: 12px;
+    }
+    
+    #graphCanvas {
+        height: 300px;
     }
 }
 

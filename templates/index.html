@@ -10,11 +10,10 @@
     <div class="container">
         <header>
             <h1>💰 Cash Flow Optimizer</h1>
-            <p class="subtitle">Minimize debt settlements with smart algorithms</p>
+            <p class="subtitle">Using Discrete Mathematics & Graph Theory to Minimize Debt Settlements</p>
         </header>
 
         <div class="main-content">
-            <!-- Add Transaction Section -->
             <section class="card">
                 <h2>📝 Add Transaction</h2>
                 <form id="transactionForm">
@@ -27,7 +26,7 @@
                         <input type="text" id="creditor" placeholder="e.g., Bob" required>
                     </div>
                     <div class="form-group">
-                        <label for="amount">Amount (₹)</label>
+                        <label for="amount">Amount ($)</label>
                         <input type="number" id="amount" step="0.01" min="0.01" placeholder="0.00" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Transaction</button>
@@ -35,7 +34,22 @@
                 <div id="message" class="message"></div>
             </section>
 
-            <!-- Current Transactions -->
+            <section class="card graph-card">
+                <h2>🔗 Transaction Graph</h2>
+                <p class="help-text">Visual representation of debt relationships (directed weighted graph)</p>
+                <canvas id="graphCanvas"></canvas>
+                <div class="graph-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #667eea;"></div>
+                        <span>Person (Vertex)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-arrow">→</div>
+                        <span>Debt (Directed Edge)</span>
+                    </div>
+                </div>
+            </section>
+
             <section class="card">
                 <div class="section-header">
                     <h2>📊 All Transactions</h2>
@@ -46,19 +60,74 @@
                 </div>
             </section>
 
-            <!-- Current Balances -->
             <section class="card">
-                <h2>💳 Current Balances</h2>
+                <h2>💳 Net Balances (Reduced Graph)</h2>
+                <p class="help-text">Net balance = Σ(credits) - Σ(debits) for each person</p>
                 <div id="balancesList" class="balances-list">
                     <p class="empty-state">No balances to show</p>
                 </div>
             </section>
 
-            <section class="card highlight">
-                <h2>✨ Optimized Settlements</h2>
-                <p class="help-text">Click the button below to calculate the minimum number of payments needed</p>
+            <section class="card math-card">
+                <h2>🧮 Discrete Mathematics Process</h2>
+                <div id="mathProcess" class="math-process">
+                    <div class="math-step">
+                        <h3>Step 1: Build Directed Graph G = (V, E)</h3>
+                        <p>• V = Set of all people (vertices)</p>
+                        <p>• E = Set of debt edges with weights</p>
+                        <p>• Each edge e = (u, v, w) where u owes v amount w</p>
+                    </div>
+                    <div class="math-step">
+                        <h3>Step 2: Calculate Net Balance (Graph Reduction)</h3>
+                        <p>For each vertex v ∈ V:</p>
+                        <p>• balance(v) = Σ(incoming edges) - Σ(outgoing edges)</p>
+                        <p>• Creates two disjoint sets: Creditors (C) and Debtors (D)</p>
+                    </div>
+                    <div class="math-step">
+                        <h3>Step 3: Apply Greedy Algorithm with Heaps</h3>
+                        <p>• Use max-heap for creditors (largest credit first)</p>
+                        <p>• Use min-heap for debtors (largest debt first)</p>
+                        <p>• Match pairs to minimize transaction count</p>
+                        <p>• Time Complexity: O(n log n)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card highlight visualization-card">
+                <h2>✨ Algorithm Visualization</h2>
+                <p class="help-text">Step-by-step view of the greedy matching algorithm</p>
                 <button id="minimizeBtn" class="btn btn-success">Calculate Optimal Settlements</button>
+                <div id="algorithmSteps" class="algorithm-steps"></div>
                 <div id="minimizedList" class="minimized-list"></div>
+            </section>
+
+            <section class="card set-theory-card">
+                <h2>📐 Set Theory & Partitioning</h2>
+                <div id="setVisualization" class="set-visualization">
+                    <div class="set-container">
+                        <div class="set creditors-set">
+                            <h3>Creditors Set (C)</h3>
+                            <p class="set-definition">C = {v ∈ V | balance(v) > 0}</p>
+                            <div id="creditorsSet" class="set-members">
+                                <p class="empty-state">No creditors yet</p>
+                            </div>
+                        </div>
+                        <div class="set-divider">∪</div>
+                        <div class="set debtors-set">
+                            <h3>Debtors Set (D)</h3>
+                            <p class="set-definition">D = {v ∈ V | balance(v) < 0}</p>
+                            <div id="debtorsSet" class="set-members">
+                                <p class="empty-state">No debtors yet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="set-properties">
+                        <p><strong>Properties:</strong></p>
+                        <p>• C ∩ D = ∅ (disjoint sets)</p>
+                        <p>• C ∪ D = V (partition of vertices)</p>
+                        <p>• Σ(balance ∈ C) = -Σ(balance ∈ D) (conservation)</p>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
